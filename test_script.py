@@ -2,15 +2,15 @@ import psycopg2
 
 conn=psycopg2.connect("dbname='Car_Inventory_db' user='postgres' password='password' host='localhost' port='5432'")
 cur = conn.cursor()
-#cur.execute("""CREATE TABLE carInventory(
- #   id integer PRIMARY KEY,
-  #  car_make text,
-   # car_model text,
-   # year integer,
-   # first_owner boolean,
-   # vinnumber varchar(17)
-#)
-#""")
+cur.execute("""CREATE TABLE carInventory(
+    id integer PRIMARY KEY,
+    car_make text,
+    car_model text,
+    year integer,
+    first_owner boolean,
+    vinnumber varchar(17)
+)
+""")
 
 with open('MOCK_DATA.csv', 'r') as f:
     # Notice that we don't need the `csv` module.
