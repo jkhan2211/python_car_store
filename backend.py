@@ -30,6 +30,18 @@ def view():
     conn.close()
     return rows
 
+def search(car_make="",car_model="",year="",first_owner="",vinnumber=""):
+    conn=psycopg2.connect("dbname='Car_Inventory_db' user='postgres' password='password' host='localhost' port='5432'")
+    cur=conn.cursor()
+    sql="SELECT * FROM carInventory WHERE car_make='%s' OR car_model='%s' OR year='%s OR first_owner='%s' OR vinnumber='%s'"
+    addr= (car_make,car_model,year,first_owner,vinnumber)
+    cur.execute(sql, addr)
+    rows=cur.fetchall()
+    conn.close()
+    return rows
+
+
 connect()
-insert("1002","Honda","Civic","2003",'true',"3sdfSKHAN")
-print(view())
+#insert("1002","Honda","Civic","2003",'true',"3sdfSKHAN")
+#print(view())
+print(search(car_make="Honda"))
