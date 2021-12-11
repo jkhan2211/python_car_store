@@ -1,5 +1,22 @@
 from tkinter import *
 #import backend
+import backend
+
+def view_command():
+    list1.delete(0,END)
+    for row in backend.view():
+        list1.insert(END,row)
+
+def search_command():
+    list1.delete(0,END)
+    for row in backend.search(make_text.get(),model_text.get(),year_text.get(),firstOwner_text.get(),vin_text.get()):
+        list1.insert(END,row)
+
+
+def add_command():
+    backend.insert(make_text.get(),model_text.get(),year_text.get(),firstOwner_text.get(),vin_text.get())
+
+
 window = Tk()
 
 l1=Label(window, text="Make")
@@ -27,16 +44,16 @@ e2.grid(row=0,column=3)
 
 
 year_text=StringVar()
-e3=Entry(window,textvariable=model_text)
+e3=Entry(window,textvariable=year_text)
 e3.grid(row=3,column=1)
 
 
 firstOwner_text=StringVar()
-e4=Entry(window,textvariable=model_text)
+e4=Entry(window,textvariable=firstOwner_text)
 e4.grid(row=1,column=1)
 
 vin_text=StringVar()
-e5=Entry(window,textvariable=model_text)
+e5=Entry(window,textvariable=vin_text)
 e5.grid(row=1,column=3)
 
 
@@ -50,14 +67,14 @@ list1.configure(yscrollcommand=sb1.set)
 sb1.configure(orient='vertical', command=list1.yview)
 
 
-b1=Button(window, text="View all", width=12)
+b1=Button(window, text="View all", width=12,command=view_command)
 b1.grid(row=2, column=3)
 
-b2=Button(window, text="Search Entry", width=12)
+b2=Button(window, text="Search Entry", width=12,command=search_command)
 b2.grid(row=3, column=3)
 
-b3=Button(window, text="Add Entry", width=12)
-b3.grid(row=4, column=3)
+b3=Button(window, text="Add Entry", width=12, command=add_command)
+b3.grid(row=3, column=4)
 
 b4=Button(window, text="Update Selected", width=12)
 b4.grid(row=4, column=3)

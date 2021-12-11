@@ -15,10 +15,10 @@ def connect():
    conn.commit()
    conn.close()
 
-def insert(id,car_make,car_model,year,first_owner,vinnumber):
+def insert(car_make,car_model,year,first_owner,vinnumber):
     conn=psycopg2.connect("dbname='Car_Inventory_db' user='postgres' password='password' host='localhost' port='5432'")
     cur=conn.cursor()
-    cur.execute("INSERT INTO carInventory VALUES('%s','%s','%s','%s','%s','%s')" % (id,car_make,car_model,year,first_owner,vinnumber))
+    cur.execute("INSERT into carInventory(car_make,car_model,year,first_owner,vinnumber) VALUES (%s, %s, %s, %s, %s)", (car_make,car_model,year,first_owner,vinnumber))
     conn.commit()
     conn.close()
 
@@ -57,8 +57,8 @@ def update(id,car_make,car_model,year,first_owner,vinnumber):
     
     
 connect()
-#insert("1002","Honda","Civic","2003",'true',"3sdfSKHAN")
+insert("Honda","Civic","2003",'true',"3sdfSKHAN")
 #delete(816)
 #print(view())
-update(1002,"Honda","Civic","2004","true","3sdfSKHAM")
-print(search(car_make="Honda"))
+#update(1002,"Honda","Civic","2004","true","3sdfSKHAM")
+#print(search(car_model="Camry"))
