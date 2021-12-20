@@ -4,11 +4,11 @@ def connect():
    conn=psycopg2.connect("dbname='Car_Inventory_db' user='postgres' password='password' host='localhost' port='5432'")
    cur=conn.cursor()
    cur.execute("""CREATE TABLE IF NOT EXISTS carInventory(
-    id integer PRIMARY KEY,
+    id SERIAL PRIMARY KEY NOT NULL,
     car_make text,
     car_model text,
-    year integer,
-    first_owner boolean,
+    year varchar(17),
+    first_owner varchar(17),
     vinnumber varchar(17)
 )
 """)
@@ -35,7 +35,7 @@ def search(car_make="",car_model="",year="",first_owner="",vinnumber=""):
     cur=conn.cursor()
     sql="SELECT * FROM carInventory WHERE car_make=%s OR car_model=%s OR year=%s OR first_owner=%s OR vinnumber=%s"
     addr= (car_make,car_model,year,first_owner,vinnumber)
-    cur.execute(sql, addr)
+    cur.execute(sql,addr)
     rows=cur.fetchall()
     conn.close()
     return rows
@@ -57,8 +57,8 @@ def update(id,car_make,car_model,year,first_owner,vinnumber):
     
     
 connect()
-insert("Honda","Civic","2003",'true',"3sdfSKHAN")
+insert("Honda","Civic","2004","true","3sdfSKHAM")
 #delete(816)
-#print(view())
+print(view())
 #update(1002,"Honda","Civic","2004","true","3sdfSKHAM")
-#print(search(car_model="Camry"))
+print(search(car_model="Camry"))

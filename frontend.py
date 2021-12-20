@@ -2,17 +2,20 @@ from tkinter import *
 #import backend
 import backend
 
+
+# this will view all the items in currently in the database 
 def view_command():
     list1.delete(0,END)
     for row in backend.view():
         list1.insert(END,row)
 
+# this will search the items in currently in the database
 def search_command():
     list1.delete(0,END)
     for row in backend.search(make_text.get(),model_text.get(),year_text.get(),firstOwner_text.get(),vin_text.get()):
         list1.insert(END,row)
 
-
+# add new items in the database
 def add_command():
     backend.insert(make_text.get(),model_text.get(),year_text.get(),firstOwner_text.get(),vin_text.get())
 
