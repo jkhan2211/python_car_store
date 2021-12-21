@@ -15,8 +15,6 @@ cur.execute("""CREATE TABLE IF NOT EXISTS carInventory(
 with open('MOCK_DATA.csv', 'r') as f:
     # Notice that we don't need the `csv` module.
     next(f) # Skip the header row.
-    next(f)
-    next(f)
     cur.copy_from(f, 'carinventory', sep=',')
 
 conn.commit()
