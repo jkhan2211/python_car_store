@@ -1,5 +1,8 @@
-# python_car_store
+# Python Car Inventory Store
+
 A desktop application for cars inventory 
+
+# Purpose: To help car dealers with used car. Track and manage their inventory. 
 
 Screen Shot
 ![app_v0](https://user-images.githubusercontent.com/38576660/146998813-fb045745-fd80-41ba-90fa-dbbdb09bd8d6.PNG)
