@@ -83,19 +83,18 @@ class Window(object):
     def get_selected_row(self,event):
         
         try:
-            global selected_tuple
             index=self.list1.curselection()[0]
-            selected_tuple=self.list1.get(index)
+            self.selected_tuple=self.list1.get(index)
             self.e1.delete(0,END)
-            self.e1.insert(END,selected_tuple[1])
+            self.e1.insert(END,self.selected_tuple[1])
             self.e2.delete(0,END)
-            self.e2.insert(END,selected_tuple[2])
+            self.e2.insert(END,self.selected_tuple[2])
             self.e3.delete(0,END)
-            self.e3.insert(END,selected_tuple[3])
+            self.e3.insert(END,self.selected_tuple[3])
             self.e4.delete(0,END)
-            self.e4.insert(END,selected_tuple[4])
+            self.e4.insert(END,self.selected_tuple[4])
             self.e5.delete(0,END)
-            self.e5.insert(END,selected_tuple[5])
+            self.e5.insert(END,self.selected_tuple[5])
         except IndexError:
             pass
             
@@ -126,9 +125,9 @@ class Window(object):
 
 
     def update_command(self):
-        database.update(selected_tuple[0],self.make_text.get(),self.model_text.get(),self.year_text.get(),self.firstOwner_text.get(),self.vin_text.get())
+        database.update(self.selected_tuple[0],self.make_text.get(),self.model_text.get(),self.year_text.get(),self.firstOwner_text.get(),self.vin_text.get())
     
-window=TK()
+window=Tk()
 Window(window)
 window.mainloop()
 
