@@ -1,6 +1,8 @@
 from tkinter import *
-#import backend
-import backend
+from backend import Database
+
+
+database=Database("dbname='Car_Inventory_db' user='postgres' password='password' host='localhost' port='5432'")
 
 def get_selected_row(event):
     
@@ -27,28 +29,28 @@ def get_selected_row(event):
 # this will view all the items in currently in the database 
 def view_command():
     list1.delete(0,END)
-    for row in backend.view():
+    for row in database.view():
         list1.insert(END,row)
 
 # this command will search the items in currently in the database(backend)
 def search_command():
     list1.delete(0,END)
-    for row in backend.search(make_text.get(),model_text.get(),year_text.get(),firstOwner_text.get(),vin_text.get()):
+    for row in database.search(make_text.get(),model_text.get(),year_text.get(),firstOwner_text.get(),vin_text.get()):
         list1.insert(END,row)
 
 # this command add new items in the database(backend)
 def add_command():
-    backend.insert(make_text.get(),model_text.get(),year_text.get(),firstOwner_text.get(),vin_text.get())
+    database.insert(make_text.get(),model_text.get(),year_text.get(),firstOwner_text.get(),vin_text.get())
     list1.delete(0,END)
     list1.insert(END,(make_text.get(),model_text.get(),year_text.get(),firstOwner_text.get(),vin_text.get()))
 
 
 def delete_command():
-    backend.delete(selected_tuple[0])
+    database.delete(selected_tuple[0])
 
 
 def update_command():
-    backend.update(selected_tuple[0],make_text.get(),model_text.get(),year_text.get(),firstOwner_text.get(),vin_text.get())
+    database.update(selected_tuple[0],make_text.get(),model_text.get(),year_text.get(),firstOwner_text.get(),vin_text.get())
 
 window = Tk()
 
@@ -122,3 +124,6 @@ b5.grid(row=5, column=3)
 b5=Button(window, text="Close", width=12, command=window.destroy)
 b5.grid(row=6, column=3)
 window.mainloop()
+
+
+#TODO: Create a sort button, which will allow user to sort by id
