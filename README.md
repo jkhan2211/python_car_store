@@ -16,7 +16,7 @@ associated to the directory
 Front end: Tkinkter using Python Library 
 Back End: Used Postgres Sql 
 
-How to run application:
+# How to run application:
 1. download the project (git clone)
 2. go the the Car_Store directory
 3. run python frontend.py 
